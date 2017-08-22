@@ -20,3 +20,9 @@ li
 html
 head
 body
+table
+tr
+td
+th
+tbody
+thead
