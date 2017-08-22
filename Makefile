@@ -20,11 +20,11 @@ N=make-wanted
 o/make-wanted: $O
 	$(LINK)
 
-o/make-wanted.o: make-wanted.c
-	$(CC) -c -o $@
+o/make-wanted.o: make-wanted.c | o
+	$(CC) -c -o $@ $<
 
-o/wanted_tags.gen.c o/wanted_tags.gen.h: o/make-wanted src/tags.wanted | o
-	cd o && ./make-wanted < ../src/tags.wanted
+o/wanted_tags.gen.c o/wanted_tags.gen.h: o/make-wanted tags.wanted | o
+	cd o && ./make-wanted < ../tags.wanted
 
 o:
 	mkdir $@
