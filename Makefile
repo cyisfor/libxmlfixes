@@ -1,11 +1,14 @@
 LINK=$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 COMPILE=$(CC) $(CFLAGS) `pkg-config --cflags $(P)` -c -o $@ $<
 
-o/%.d: src/%.c | o
-        $(COMPILE) -MG -MM
+o/%.d: %.c | o
+	$(COMPILE) -MG -MM
 
-o/%.o: src/%.c | o
-        $(COMPILE)
+o/%.o: %.c | o
+	$(COMPILE)
+
+o/%.o: o/%.gen.c | o
+	$(COMPILE)
 
 O=$(patsubst %,o/%.o,$N) | o
 
@@ -16,6 +19,9 @@ libxmlfixes.a: $O
 N=make-wanted
 o/make-wanted: $O
 	$(LINK)
+
+o/make-wanted.o: make-wanted.c
+	$(CC) -c -o $@
 
 o/wanted_tags.gen.c o/wanted_tags.gen.h: o/make-wanted src/tags.wanted | o
 	cd o && ./make-wanted < ../src/tags.wanted
