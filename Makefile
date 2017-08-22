@@ -1,5 +1,6 @@
-LINK=$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
-COMPILE=$(CC) $(CFLAGS) `pkg-config --cflags $(P)` -c -o $@ $<
+P=libxml2
+LINK=$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS) $(shell xml2-config --libs $(P))
+COMPILE=$(CC) $(CFLAGS) $(shell xml2-config --cflags) -c -o $@ $<
 
 o/%.d: %.c | o
 	$(COMPILE) -MG -MM
