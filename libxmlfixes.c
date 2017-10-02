@@ -185,3 +185,12 @@ xmlChar* findPropCsux(xmlNode* o, xmlChar* name, size_t len) {
 	return NULL;
 }
 	
+xmlNode* nextE(xmlNode* e) {
+	// continue to the next node until we hit an element
+	// this is for stupid situations like whitespace between <html> and <head>
+	// the parser's not smart enough to figure out those tags should be siblings.
+	while(e && e->type != XML_ELEMENT_NODE) {
+		e = e->next;
+	}
+	return e;
+}

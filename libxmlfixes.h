@@ -11,3 +11,7 @@ void HTML5_plz(xmlDoc* doc);
 // I KNOW I created this before...
 xmlChar* findPropCsux(xmlNode* o, xmlChar* name, size_t len);
 #define findProp(a,b) findPropCsux(a,b,sizeof(b)-1)
+
+// find the next actual element, if the current is a text node or something.
+// use like next = nextE(cur->next);
+xmlNode* nextE(xmlNode* e);
