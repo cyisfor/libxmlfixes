@@ -8,7 +8,7 @@ $(call $(AUTOMAKE_SUBPROJECT), libxml2, libxml2)
 o/libxmlfixes.o: | libxml2/include
 CFLAGS+=-Ilibxml2/include
 
-libxml2/include:
+coolmake/head.mk coolmake/tail.mk libxml2/include:
 	sh setup.sh
 
 N=wanted_tags libxmlfixes
