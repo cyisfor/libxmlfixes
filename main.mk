@@ -1,5 +1,7 @@
 include coolmake/top.mk
 
+VPATH+=$(O)
+
 OUT=wanted_tags
 N=wanted_tags.gen
 $(eval $(OBJECT))
@@ -13,7 +15,7 @@ coolmake/head.mk: git-tools/funcs.sh coolmake/tail.mk libxml2/include
 
 N:=wanted_tags libxmlfixes
 OUT:=libxmlfixes.la
-$(eval $(PROGRAM))
+$(error $(PROGRAM))
 
 N=make-wanted
 OUT=make-wanted
@@ -23,8 +25,8 @@ N=make-wanted
 OUT=make-wanted
 $(eval $(OBJECT))
 
-$(O)/wanted_tags.gen.c: $(O)/make-wanted $(TOP)tags.wanted $(O)/wanted_tags.gen.h | $(O)
+$(O)/wanted_tags.gen.c: $(O)/make-wanted $(O)/wanted_tags.gen.h $(TOP)tags.wanted  | $(O)
 	$(call STATUS,Generate,wanted_tags)
-	$(S)cd o && ../$(firstword $^) < ../$(lastword $^)
+	$(S)cd $(O) && ./$(notdir $(firstword $^)) < ../$(notdir $(lastword $^))
 
 $(O)/wanted_tags.gen.h: ;

@@ -6,7 +6,7 @@ git-tools/funcs.sh:
 	git submodule update --init
 
 
-coolmake/head.mk:
+coolmake/head.mk: coolmake/tail.mk | libxml2/include
 	sh setup.sh
 coolmake/tail.mk libxml2/include: ;
 
