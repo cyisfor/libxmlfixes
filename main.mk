@@ -23,7 +23,8 @@ N=make-wanted
 OUT=make-wanted
 $(eval $(OBJECT))
 
-$(O)/wanted_tags.gen.c $(O)/wanted_tags.gen.h: $(O)/make-wanted tags.wanted | $(O)
+$(O)/wanted_tags.gen.c: $(O)/make-wanted $(TOP)tags.wanted $(O)/wanted_tags.gen.h | $(O)
 	$(call STATUS,Generate,wanted_tags)
 	$(S)cd o && ../$(firstword $^) < ../$(lastword $^)
 
+$(O)/wanted_tags.gen.h: ;
