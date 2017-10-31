@@ -1,27 +1,3 @@
-CFLAGS+=-g
-CFLAGS+=-Ilibxml2/include
-LIBTOOL:=libtool --tag=CC 
-ifeq ($(V),)
-S:=@
-LIBTOOL+=--quiet 
-else
-S:=
-endif
-LIBTOOL+=--mode=
-
-define LINK
-	@echo LINK $*
-	$(S)$(LIBTOOL)link $(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
-endef
-define COMPILE
-	@echo COMPILE $*
-	$(S)$(LIBTOOL)compile $(CC) $(CFLAGS) -c -o $@ $<
-endef
-
-
-
-
-
 
 o/%.d: %.c | o
 	$(COMPILE) -MG -MM
@@ -33,6 +9,11 @@ o/%.o: o/%.gen.c | o
 	$(COMPILE)
 
 O=$(patsubst %,o/%.o,$N) | o
+
+o/libxmlfixes.o: | libxml2/include
+
+libxml2/include:
+	sh setup.sh
 
 N=wanted_tags libxmlfixes
 libxmlfixes.la: $O
