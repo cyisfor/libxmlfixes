@@ -1,5 +1,9 @@
 include coolmake/head.mk
 
+o/%.lo: %.c o/%.d | o
+	$(COMPILE)
+
+
 $(call $(AUTOMAKE_SUBPROJECT), libxml2, libxml2)
 
 o/libxmlfixes.o: | libxml2/include
