@@ -15,7 +15,8 @@ coolmake/head.mk: git-tools/funcs.sh coolmake/tail.mk libxml2/include
 
 N:=wanted_tags libxmlfixes
 OUT:=libxmlfixes.la
-$(error $(PROGRAM))
+$(warning $(PROGRAM))
+$(eval $(PROGRAM))
 
 N=make-wanted
 OUT=make-wanted
