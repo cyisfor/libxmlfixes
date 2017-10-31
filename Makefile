@@ -1,8 +1,7 @@
 include coolmake/head.mk
 
-o/%.lo: %.c o/%.d | o
+o/wanted_tags.lo: o/%.lo: o/%.gen.c
 	$(COMPILE)
-
 
 $(call $(AUTOMAKE_SUBPROJECT), libxml2, libxml2)
 
@@ -24,7 +23,8 @@ o/make-wanted.o: make-wanted.c | o
 	$(COMPILE)
 
 o/wanted_tags.gen.c o/wanted_tags.gen.h: o/make-wanted tags.wanted | o
-	cd o && ../$(firstword $^) < ../$(lastword $^)
+	$(call STATUS,Generate,wanted_tags)
+	$(S)cd o && ../$(firstword $^) < ../$(lastword $^)
 
 include coolmake/tail.mk
 
