@@ -1,7 +1,17 @@
 CFLAGS+=-g
+CFLAGS+=-Ilibxml2/include
 LIBTOOL:=libtool --tag=CC --mode=
-LINK=$(LIBTOOL)link $(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS) $(shell xml2-config --libs)
-COMPILE=$(LIBTOOL)compile $(CC) $(CFLAGS) $(shell xml2-config --cflags) -c -o $@ $<
+ifeq ($(V),)
+LINK=@echo LINK $*; $(LIBTOOL)link $(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+COMPILE=@echo COMPILE $*; $(LIBTOOL)compile $(CC) $(CFLAGS) -c -o $@ $<
+else
+LINK=$(LIBTOOL)link $(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+COMPILE=$(LIBTOOL)compile $(CC) $(CFLAGS) -c -o $@ $<
+endif
+
+
+
+
 
 o/%.d: %.c | o
 	$(COMPILE) -MG -MM
