@@ -1,11 +1,14 @@
 CFLAGS+=-g
 CFLAGS+=-Ilibxml2/include
-LIBTOOL:=libtool --tag=CC --mode=
+LIBTOOL:=libtool --tag=CC 
 ifeq ($(V),)
 S:=@
+LIBTOOL+=--quiet 
 else
 S:=
 endif
+LIBTOOL+=--mode=
+
 define LINK
 	@echo LINK $*
 	$(S)$(LIBTOOL)link $(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
