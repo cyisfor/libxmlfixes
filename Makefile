@@ -2,12 +2,19 @@ CFLAGS+=-g
 CFLAGS+=-Ilibxml2/include
 LIBTOOL:=libtool --tag=CC --mode=
 ifeq ($(V),)
-LINK=@echo LINK $*; $(LIBTOOL)link $(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
-COMPILE=@echo COMPILE $*; $(LIBTOOL)compile $(CC) $(CFLAGS) -c -o $@ $<
+S:=@
 else
-LINK=$(LIBTOOL)link $(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
-COMPILE=$(LIBTOOL)compile $(CC) $(CFLAGS) -c -o $@ $<
+S:=
 endif
+define LINK
+	@echo LINK $*
+	$(S)$(LIBTOOL)link $(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+endef
+define COMPILE
+	@echo COMPILE $*
+	$(S)$(LIBTOOL)compile $(CC) $(CFLAGS) -c -o $@ $<
+endef
+
 
 
 
