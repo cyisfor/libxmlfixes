@@ -10,7 +10,8 @@ $(call $(AUTOMAKE_SUBPROJECT), libxml2, libxml2)
 $(O)/libxmlfixes.lo: | libxml2/include
 CFLAGS+=-Ilibxml2/include
 
-coolmake/head.mk: git-tools/funcs.sh coolmake/tail.mk libxml2/include
+coolmake/head.mk coolmake/tail.mk libxml2/include :
+	sh setup.sh
 
 N:=libxmlfixes
 NN:=wanted_tags.gen
@@ -23,6 +24,6 @@ $(eval $(PROGRAM))
 
 $(O)/wanted_tags.gen.c: $(O)/make-wanted $(O)/wanted_tags.gen.h $(TOP)tags.wanted  | $(O)
 	$(call STATUS,Generate,wanted_tags)
-	$(S)cd $(O) && ./$(notdir $(firstword $^)) < ../$(notdir $(lastword $^))
+	$(S)$(firstword $^) $(dir $@) < $(lastword $^)
 
 $(O)/wanted_tags.gen.h: ;

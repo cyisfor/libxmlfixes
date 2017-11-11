@@ -36,6 +36,10 @@ int main(int argc, char *argv[])
 		};
 	*/
 
+	if(argc == 2) {
+		if(chdir(argv[1])) exit(3);
+	}
+
 	struct trie {
 		char c;
 		struct trie* subs;
