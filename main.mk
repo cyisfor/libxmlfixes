@@ -2,9 +2,8 @@ include coolmake/top.mk
 
 VPATH+=$(O)
 
-OUT=wanted_tags
-N=wanted_tags.gen
-$(eval $(OBJECT))
+$(O)/wanted_tags.gen.lo: $(O)/wanted_tags.gen.c | $(O)
+	$(COMPILE)
 
 $(call $(AUTOMAKE_SUBPROJECT), libxml2, libxml2)
 
@@ -13,7 +12,8 @@ CFLAGS+=-Ilibxml2/include
 
 coolmake/head.mk: git-tools/funcs.sh coolmake/tail.mk libxml2/include
 
-N:=wanted_tags.gen libxmlfixes
+N:=libxmlfixes
+NN:=wanted_tags.gen
 OUT:=libxmlfixes.la
 $(eval $(PROGRAM))
 
