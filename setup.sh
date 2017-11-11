@@ -1,3 +1,4 @@
+git submodule update --init
 . git-tools/funcs.sh
 
 local=/extra/home/packages/git/libxml2
