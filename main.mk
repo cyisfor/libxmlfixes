@@ -13,18 +13,13 @@ CFLAGS+=-Ilibxml2/include
 
 coolmake/head.mk: git-tools/funcs.sh coolmake/tail.mk libxml2/include
 
-N:=wanted_tags libxmlfixes
+N:=wanted_tags.gen libxmlfixes
 OUT:=libxmlfixes.la
-$(warning $(PROGRAM))
 $(eval $(PROGRAM))
 
 N=make-wanted
-OUT=make-wanted
+OUT=o/make-wanted
 $(eval $(PROGRAM))
-
-N=make-wanted
-OUT=make-wanted
-$(eval $(OBJECT))
 
 $(O)/wanted_tags.gen.c: $(O)/make-wanted $(O)/wanted_tags.gen.h $(TOP)tags.wanted  | $(O)
 	$(call STATUS,Generate,wanted_tags)
