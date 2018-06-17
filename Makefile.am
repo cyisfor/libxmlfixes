@@ -1,12 +1,12 @@
-include coolmake/head.mk
-include main.mk
-include coolmake/tail.mk
+wanted_tags.gen.c: make-wanted wanted_tags.gen.h tags.wanted
+	./make-wanted $(dir $@) < tags.wanted
+wanted_tags.gen.h: ;
 
-git-tools/funcs.sh:
-	git submodule update --init
+noinst_PROGRAMS = make-wanted
+lib_LTLIBRARIES = libxmlfixes.la
 
-coolmake/head.mk: coolmake/tail.mk coolmake/top.mk | libxml2/include
-	sh setup.sh
-coolmake/tail.mk coolmake/top.mk libxml2/include: ;
+make_wanted_SOURCES = make-wanted.c
 
-all: libxmlfixes.la
+libxmlfixes_la_SOURCES = wanted_tags.gen.c libxmlfixes.c
+libxmlfixes_la_CFLAGS = -I $(srcdir)/libxml2/include
+libxmlfixes_la_LIBADD = libxml2/libxml2.la
