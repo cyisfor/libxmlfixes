@@ -11,5 +11,8 @@ lib_LTLIBRARIES = libxmlfixes.la
 make_wanted_SOURCES = src/make-wanted.c
 
 libxmlfixes_la_SOURCES = wanted_tags.gen.c src/libxmlfixes.c
-libxmlfixes_la_CFLAGS = -I $(srcdir)/libxml2/include
+libxmlfixes_la_CFLAGS = -I $(srcdir)/libxml2/include -I libxml2/include
 libxmlfixes_la_LIBADD = libxml2/libxml2.la
+
+libxml2/libxml2.la:
+	$(MAKE) -C libxml2
