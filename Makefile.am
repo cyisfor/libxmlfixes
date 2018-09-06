@@ -1,5 +1,7 @@
 ACLOCAL_AMFLAGS = -I m4
 
+AM_LIBTOOLFLAGS = --quiet --no-warnings
+
 BUILT_SOURCES = wanted_tags.gen.c
 wanted_tags.gen.c: make-wanted wanted_tags.gen.h $(srcdir)/tags.wanted
 	./make-wanted $(dir $@) < $(srcdir)/tags.wanted

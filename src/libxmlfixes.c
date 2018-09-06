@@ -197,7 +197,11 @@ xmlNode* nextE(xmlNode* e) {
 
 // where the hell did this go?
 void html_dump_to_fd(int fd, xmlDoc* doc) {
-	xmlOutputBufferPtr out = xmlOutputBufferCreateFd(fd,XML_CHAR_ENCODING_UTF8);
+	static xmlCharEncodingHandlerPtr utf8 = NULL;
+	if(utf8 == NULL) {
+		utf8 = xmlGetCharEncodingHandler(XML_CHAR_ENCODING_UTF8);
+	}
+	xmlOutputBufferPtr out = xmlOutputBufferCreateFd(fd,utf8);
 	assert(out);
 	htmlDocContentDumpFormatOutput(out, doc, "utf-8", 1);
 	xmlOutputBufferClose(out);
