@@ -194,3 +194,12 @@ xmlNode* nextE(xmlNode* e) {
 	}
 	return e;
 }
+
+// where the hell did this go?
+void html_dump_to_fd(int fd, xmlDoc* doc) {
+	xmlOutputBufferPtr out = xmlOutputBufferCreateFd(fd,XML_CHAR_ENCODING_UTF8);
+	assert(out);
+	htmlDocContentDumpFormatOutput(out, doc, "utf-8", 1);
+	xmlOutputBufferClose(out);
+}
+		

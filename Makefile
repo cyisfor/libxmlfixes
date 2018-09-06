@@ -8,7 +8,7 @@ prefix=$(realpath .)/derp
 endif
 endif
 
-build/Makefile: configure | build
+build/Makefile: | configure build
 	cd build && ../configure -C --prefix=$(prefix) --without-python
 
 configure: configure.ac Makefile.in 
