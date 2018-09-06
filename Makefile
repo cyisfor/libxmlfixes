@@ -9,7 +9,7 @@ endif
 endif
 
 build/Makefile: configure | build
-	cd build && ../configure --prefix=$(prefix) --without-python
+	cd build && ../configure -C --prefix=$(prefix) --without-python
 
 configure: configure.ac Makefile.in 
 	autoconf

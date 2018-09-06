@@ -23,4 +23,4 @@ libxmlfixes_ladir = $(includedir)/libxmlfixes
 
 libxmlfixes_la_LIBADD = libxml2/libxml2.la
 
-noinst_SUBDIRS = libxml2
+SUBDIRS = libxml2
