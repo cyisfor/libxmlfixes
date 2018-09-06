@@ -1,8 +1,12 @@
 all: build/Makefile
 	$(MAKE) -C build && $(MAKE) -C build install
 
+ifeq($(prefix),)
+prefix=$(realpath derp)
+endif
+
 build/Makefile: configure | build
-	cd build && ../configure --prefix=$(realpath ../derp) --bindir=$(realpath ../derp) --without-python
+	cd build && ../configure --prefix=$(prefix) --without-python
 
 configure: configure.ac Makefile.in 
 	autoconf
