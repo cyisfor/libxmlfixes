@@ -11,13 +11,16 @@ lib_LTLIBRARIES = libxmlfixes.la
 make_wanted_SOURCES = src/make-wanted.c
 
 libxmlfixes_la_SOURCES = wanted_tags.gen.c src/libxmlfixes.c
-libxmlfixes_la_CFLAGS = -I $(srcdir)/libxml2/include \
-	-I $(srcdir)/libxml2/build/include
+libxmlfixes_la_CFLAGS = \
+	-I $(srcdir)/libxml2/include \
+	-I libxml2/include
+
 libxmlfixes_la_HEADERS = \
 	$(srcdir)/src/libxmlfixes.h \
 	$(srcdir)/src/selectors.h
+
 libxmlfixes_ladir = $(includedir)/libxmlfixes
 
-libxmlfixes_la_LIBADD = $(srcdir)/libxml2/lib/libxml2.la
+libxmlfixes_la_LIBADD = libxml2/libxml2.la
 
-SUBDIRS = libxml2
+noinst_SUBDIRS = libxml2

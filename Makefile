@@ -1,8 +1,11 @@
 all: build/Makefile
 	$(MAKE) -C build && $(MAKE) -C build install
 
-ifeq($(prefix),)
+ifeq ($(prefix),)
 prefix=$(realpath derp)
+ifeq ($(prefix),)
+prefix=$(realpath .)/derp
+endif
 endif
 
 build/Makefile: configure | build
