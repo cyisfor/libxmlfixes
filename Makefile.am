@@ -20,5 +20,4 @@ libxmlfixes_ladir = $(includedir)/libxmlfixes
 
 libxmlfixes_la_LIBADD = $(srcdir)/libxml2/lib/libxml2.la
 
-libxml2/libxml2.la:
-	$(MAKE) -C libxml2/build
+SUBDIRS = libxml2
