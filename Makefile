@@ -11,7 +11,7 @@ endif
 build/Makefile: | configure build
 	cd build && ../configure -C --prefix=$(prefix) --without-python
 
-configure: configure.ac Makefile.am
+configure: | configure.ac Makefile.am
 	autoreconf -i
 
 build:
