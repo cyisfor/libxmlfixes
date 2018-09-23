@@ -113,15 +113,16 @@ xmlDoc* readFunky(int fd, const char* content, size_t clen) {
 }
 
 xmlNode* fuckXPath(xmlNode* parent, const char* name) {
-    if(strcmp(parent->name,name)==0)
-        return parent;
-    xmlNode* cur = parent->children;
-    for(;cur;cur=cur->next) {
-        xmlNode* ret = fuckXPath(cur,name);
-        if(ret)
-            return ret;
-    }
-    return NULL;
+	// Note: XML_HTML_DOCUMENT_NODE has no name
+	if(parent->name && strcmp(parent->name,name)==0)
+		return parent;
+	xmlNode* cur = parent->children;
+	for(;cur;cur=cur->next) {
+		xmlNode* ret = fuckXPath(cur,name);
+		if(ret)
+			return ret;
+	}
+	return NULL;
 }
 
 xmlNode* fuckXPathDivId(xmlNode* parent, const char* id) {
