@@ -9,9 +9,10 @@ ExternalProject_Add(libxml2
 	DOWNLOAD_COMMAND git submodule update --init --recursive --checkout
 	CONFIGURE_COMMAND ../libxml2/configure -C --without-python
 	BUILD_COMMAND make
+	BYPRODUCTS libxml2.la
 	)
 
-ExternalProject_GetProperty(libxml2 INSTALL_DIR)
+ExternalProject_Get_Property(libxml2 INSTALL_DIR)
 
 add_library(libxmlfixes
 	wanted_tags.gen.c
