@@ -17,7 +17,7 @@ add_library(libxmlfixes
 	wanted_tags.gen.c
 	src/libxmlfixes.c
 	src/selectors.c)
-target_include_directories(libxmlfixes PRIVATE "${INSTALL_DIR}")
+target_include_directories(libxmlfixes PUBLIC "${INSTALL_DIR}")
 target_link_libraries(libxmlfixes "${INSTALL_DIR}/lib/libxml2.la")
 
 add_custom_command(
