@@ -7,7 +7,7 @@ ExternalProject_Add(libxml2
 	UPDATE_COMMAND rsync -aPv --exclude .git ${CMAKE_CURRENT_SOURCE_DIR}/libxml2/ ./
 	DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}
 	DOWNLOAD_COMMAND git submodule update --init --recursive --checkout
-	CONFIGURE_COMMAND ../libxml2/configure -C --prefix=<PREFIX_DIR> --without-python
+	CONFIGURE_COMMAND ../libxml2/configure -C --prefix=$<PREFIX_DIR> --without-python
 	BUILD_COMMAND make
 	BYPRODUCTS libxml2.la
 	)
