@@ -7,15 +7,18 @@ ExternalProject_Add(libxml2
 	UPDATE_COMMAND rsync -aPv --exclude .git ${CMAKE_CURRENT_SOURCE_DIR}/libxml2/ ./
 	DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}
 	DOWNLOAD_COMMAND git submodule update --init --recursive --checkout
-	CONFIGURE_COMMAND ../libxml2/configure -C --prefix=${CMAKE_CURRENT_BINARY_DIR}/../derp --without-python
+	CONFIGURE_COMMAND ../libxml2/configure -C --without-python
 	BUILD_COMMAND make
 	)
+
+ExternalProject_GetProperty(libxml2 INSTALL_DIR)
 
 add_library(libxmlfixes
 	wanted_tags.gen.c
 	src/libxmlfixes.c
 	src/selectors.c)
-target_link_libraries(libxmlfixes ../derp/lib/libxml2.la)
+target_include_directories(libxmlfixes PRIVATE "${INSTALL_DIR}")
+target_link_libraries(libxmlfixes "${INSTALL_DIR}/lib/libxml2.la")
 
 add_custom_command(
 	OUTPUT wanted_tags.gen.c
