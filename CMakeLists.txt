@@ -4,10 +4,10 @@ project(libxmlfixes VERSION 0.1)
 configure_file(libxml2/include/libxml/xmlversion.h.in libxml/xmlversion.h)
 
 add_library(mylibxml
-	xmlversion.h
+	libxml/xmlversion.h
 	libxml2/xmlwriter.c)
 
-target_include_directories(mylibxml PRIVATE
+target_include_directories(mylibxml PUBLIC
 	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include" "${CMAKE_CURRENT_BUILD_DIR}")
 
 add_library(libxmlfixes
