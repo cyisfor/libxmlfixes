@@ -5,8 +5,8 @@ class pat:
 	comment = re.compile(r'/\* *(.*?) *\*/')
 	header = re.compile("HAVE_(.*?)_H")
 	function = re.compile("HAVE_(.*)")
-print(sys.stdin.readline())
-print("")
+#print(sys.stdin.readline())
+#print("")
 
 things = {}
 
@@ -17,7 +17,6 @@ for comment in sys.stdin:
 	undef = sys.stdin.readline()
 	m = pat.undef.match(undef)
 	if not m:
-		print('undef',repr(comment),repr(undef))
 		continue
 	things[m.group(1)] = comment
 
