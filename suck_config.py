@@ -36,4 +36,4 @@ for name,comment in sorted(things.items()):
 		else:
 			print("set("+name+" CACHE BOOL ON "+repr(comment)+")")
 	
-print("configure_file(libxml2/config.h.in config.h)")
+print('configure_file("libxml2/config.h.in" "config.h")')

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 project(libxmlfixes VERSION 0.1)
 
 
-include(libxmldefines.cmake)
+include(derp.cmake)
 
 
 add_library(mylibxml
