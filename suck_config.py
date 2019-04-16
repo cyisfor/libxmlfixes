@@ -17,7 +17,7 @@ for comment in sys.stdin:
 	undef = sys.stdin.readline()
 	m = pat.undef.match(undef)
 	if not m:
-		print('undef',repr(undef))
+		print('undef',repr(comment),repr(undef))
 		continue
 	things[m.group(1)] = comment
 
@@ -37,3 +37,4 @@ for name,comment in sorted(things.items()):
 		else:
 			print("set("+name+" CACHE BOOL ON "+repr(comment)+")")
 	
+print("configure_file(libxml2/config.h.in config.h)")
