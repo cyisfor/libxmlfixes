@@ -3,12 +3,16 @@ project(libxmlfixes VERSION 0.1)
 
 configure_file(libxml2/include/libxml/xmlversion.h.in libxml/xmlversion.h)
 
+set(WITH_TRIO 0)
+set(LIBXML_VERSION_EXTRA "derp")
+set(LIBXML_VERSION_NUMBER "1.0")
+
 add_library(mylibxml
 	libxml/xmlversion.h
 	libxml2/xmlwriter.c)
 
 target_include_directories(mylibxml PUBLIC
-	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include" "${CMAKE_CURRENT_BUILD_DIR}")
+	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include" "${CMAKE_CURRENT_BINARY_DIR}")
 
 add_library(libxmlfixes
 	wanted_tags.gen.c
@@ -16,7 +20,7 @@ add_library(libxmlfixes
 	src/selectors.c)
 add_dependencies(libxmlfixes mylibxml)
 target_include_directories(libxmlfixes PUBLIC
-	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include" "${CMAKE_CURRENT_BUILD_DIR}")
+	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include" "${CMAKE_CURRENT_BINARY_DIR}")
 target_link_libraries(libxmlfixes mylibxml.la)
 
 add_custom_command(
