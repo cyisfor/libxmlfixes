@@ -8,8 +8,7 @@ ExternalProject_Add(libxml2
 	DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}
 	DOWNLOAD_COMMAND git submodule update --init --recursive --checkout
 	CONFIGURE_COMMAND ../libxml2/configure -C --prefix=<INSTALL_DIR> --without-python
-	BUILD_COMMAND make
-	BYPRODUCTS libxml2.la
+	BUILD_COMMAND make -j12 -l12
 	)
 
 ExternalProject_Get_Property(libxml2 INSTALL_DIR)
@@ -19,7 +18,7 @@ add_library(libxmlfixes
 	src/libxmlfixes.c
 	src/selectors.c)
 add_dependencies(libxmlfixes libxml2)
-target_include_directories(libxmlfixes PUBLIC "${INSTALL_DIR}")
+target_include_directories(libxmlfixes PUBLIC "${INSTALL_DIR}/include")
 target_link_libraries(libxmlfixes "${INSTALL_DIR}/lib/libxml2.la")
 
 add_custom_command(
