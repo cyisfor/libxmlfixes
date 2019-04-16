@@ -1,10 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
-project(story-generator VERSION 0.1)
+project(libxmlfixes VERSION 0.1)
 
 add_library(mylibxml
 	libxml2/xmlwriter.c)
-
-ExternalProject_Get_Property(libxml2 INSTALL_DIR)
 
 add_library(libxmlfixes
 	wanted_tags.gen.c
