@@ -6,6 +6,8 @@ class pat:
 print(sys.stdin.readline())
 print("")
 
+things = {}
+
 for comment in sys.stdin:
 	m = pat.comment.match(comment)
 	if not m: continue
@@ -15,7 +17,8 @@ for comment in sys.stdin:
 	if not m:
 		print('undef',repr(undef))
 		continue
-	name = m.group(1)
-	comment = comment[2:-2].strip()
+	things[m.group(1)] = comment
+
+for name,comment in sorted(things.items()):
 	print("set("+name+" CACHE BOOL OFF "+repr(comment)+")")
 	
