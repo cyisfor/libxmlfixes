@@ -19,7 +19,7 @@ for comment in sys.stdin:
 	if not m:
 		continue
 	things[m.group(1)] = comment
-
+	
 print("INCLUDE (CheckIncludeFiles)")
 print("INCLUDE (CheckFunctionExists)")
 	
@@ -36,8 +36,10 @@ for name,comment in sorted(things.items()):
 		else:
 			print("set("+name+" CACHE BOOL ON "+repr(comment)+")")
 
-for name,comment in sorted(things.items()):
-	print("/*",comment,"*/")
-	print("#cmakedefine01",name)
+chin = open("config.h.in","wt")
 			
+for name,comment in sorted(things.items()):
+	print("/*",comment,"*/",file=chin)
+	print("#cmakedefine01",name,file=chin)
+chin.close()
 print('configure_file("libxml2/config.h.in" "config.h")')
