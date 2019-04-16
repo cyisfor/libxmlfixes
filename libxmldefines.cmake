@@ -36,3 +36,4 @@ set(LIBXML_VERSION_EXTRA "derp")
 set(LIBXML_VERSION_NUMBER "1.0")
 
 configure_file(libxml2/include/libxml/xmlversion.h.in libxml/xmlversion.h)
+
