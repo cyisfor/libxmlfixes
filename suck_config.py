@@ -35,5 +35,9 @@ for name,comment in sorted(things.items()):
 			print("CHECK_FUNCTION_EXISTS("+function+" "+name+")")
 		else:
 			print("set("+name+" CACHE BOOL ON "+repr(comment)+")")
-	
+
+for name,comment in sorted(things.items()):
+	print("/*",comment,"*/")
+	print("#cmakedefine01",name)
+			
 print('configure_file("libxml2/config.h.in" "config.h")')
