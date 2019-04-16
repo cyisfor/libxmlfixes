@@ -3,6 +3,7 @@ import sys,re
 class pat:
 	undef = re.compile("^#undef (.*)")
 	comment = re.compile(r'/\* *(.*?) *\*/')
+	header = re.compile("HAVE_(.*?)_H")
 print(sys.stdin.readline())
 print("")
 
@@ -20,5 +21,10 @@ for comment in sys.stdin:
 	things[m.group(1)] = comment
 
 for name,comment in sorted(things.items()):
-	print("set("+name+" CACHE BOOL OFF "+repr(comment)+")")
+	m = pat.header.search(name)
+	if m:
+		header = m.group(1).lower()+".h"
+		print("CHECK_INCLUDE_FILES("+header+" "+name+")")
+	else:
+		print("set("+name+" CACHE BOOL ON "+repr(comment)+")")
 	
