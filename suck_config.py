@@ -4,7 +4,7 @@ class pat:
 	undef = re.compile("^#undef (.*)")
 	comment = re.compile(r'/\* *(.*?) *\*/')
 	header = re.compile("HAVE_(.*?)_H")
-	function = re.compile("HAVE_(.*?)")
+	function = re.compile("HAVE_(.*)")
 print(sys.stdin.readline())
 print("")
 
@@ -21,6 +21,9 @@ for comment in sys.stdin:
 		continue
 	things[m.group(1)] = comment
 
+print("INCLUDE (CheckIncludeFiles)")
+print("INCLUDE (CheckFunctionExists)")
+	
 for name,comment in sorted(things.items()):
 	m = pat.header.search(name)
 	if m:
