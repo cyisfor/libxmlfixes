@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(libxmlfixes VERSION 0.1)
 
-configure_file(libxml2/include/xmlversion.h xmlversion.h)
+configure_file(libxml2/include/libxml/xmlversion.h.in xmlversion.h)
 
 add_library(mylibxml
 	xmlversion.h
