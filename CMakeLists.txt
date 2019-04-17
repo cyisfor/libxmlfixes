@@ -6,7 +6,7 @@ add_library(libxml
 	libxml2/config.h
 	libxml2/xmlwriter.c)
 
-file(MAKE_DIRECTORY derp)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/libxml2)
 
 add_custom_command(
 	OUTPUT
@@ -50,7 +50,10 @@ add_library(libxmlfixes
 add_dependencies(libxmlfixes libxml)
 	
 target_link_libraries(libxmlfixes libxml.la)
-
+target_include_directories(libxmlfixes PUBLIC
+	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include"
+	"${CMAKE_CURRENT_BINARY_DIR}/libxml2"
+	"${CMAKE_CURRENT_BINARY_DIR}/libxml2/include")
 add_custom_command(
 	OUTPUT wanted_tags.gen.c
 	COMMAND make-wanted . <${CMAKE_CURRENT_SOURCE_DIR}/tags.wanted
