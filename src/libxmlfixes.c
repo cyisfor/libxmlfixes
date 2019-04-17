@@ -2,7 +2,7 @@
 
 #include "libxmlfixes.h"
 #include <libxml/HTMLparser.h>
-#include <libxml/HTMLtree.h>
+#include <libxml/HTMLtree.h> // htmlDocContentDumpFormatOutput
 #include <assert.h>
 #include <string.h> // strlen
 #include <sys/stat.h>
