@@ -22,6 +22,5 @@ add_custom_command(
 	WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 	DEPENDS make-wanted tags.wanted)
 	
-
 add_executable(make-wanted
 	src/make-wanted.c)
