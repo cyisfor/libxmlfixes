@@ -4,6 +4,7 @@ project(libxmlfixes VERSION 0.1)
 add_library(xml
 	libxml2/include/libxml/xmlversion.h
 	libxml2/config.h
+	libxml2/HTMLtree.c
 	libxml2/xmlwriter.c)
 
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/libxml2)
@@ -47,7 +48,8 @@ add_library(xmlfixes
 	wanted_tags.gen.c
 	src/libxmlfixes.c
 	src/selectors.c)
-	
+add_dependencies(xmlfixes xml)
+
 target_link_libraries(xmlfixes libxml.la)
 target_include_directories(xmlfixes PUBLIC
 	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include"
