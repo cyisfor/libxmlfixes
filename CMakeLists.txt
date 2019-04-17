@@ -6,10 +6,8 @@ add_library(libxml
 	libxml2/config.h
 	libxml2/xmlwriter.c)
 
-add_custom_command(
-	OUTPUT
-	libxml2
-	COMMAND file(MAKE_DIRECTORY libxml2))
+file(MAKE_DIRECTORY derp)
+
 add_custom_command(
 	OUTPUT
 	libxml2/include/libxml/xmlversion.h
