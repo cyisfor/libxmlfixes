@@ -8,8 +8,13 @@ add_library(libxml
 
 add_custom_command(
 	OUTPUT
+	libxml2
+	COMMAND file(MAKE_DIRECTORY libxml2))
+add_custom_command(
+	OUTPUT
 	libxml2/include/libxml/xmlversion.h
 	libxml2/config.h
+	WORKING_DIRECTORY libxml2
 	COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/libxml2/configure
 	ARGS
 	--without-modules
@@ -31,7 +36,9 @@ add_custom_command(
 	--disable-dependency-tracking
 	--disable-shared
 	--disable-static
-	MAIN_DEPENDENCY ${CMAKE_CURRENT_SOURCE_DIR}/libxml2/configure)
+	MAIN_DEPENDENCY ${CMAKE_CURRENT_SOURCE_DIR}/libxml2/configure
+  DEPENDS libxml2)
+
 
 target_include_directories(libxml PUBLIC
 	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include"
