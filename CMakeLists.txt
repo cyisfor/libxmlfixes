@@ -33,7 +33,7 @@ add_custom_command(
 	--disable-static
 	MAIN_DEPENDENCY ${CMAKE_CURRENT_SOURCE_DIR}/libxml2/configure)
 
-target_include_directories(mylibxml PUBLIC
+target_include_directories(libxml PUBLIC
 	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include"
 	"${CMAKE_CURRENT_BINARY_DIR}/libxml2"
 	"${CMAKE_CURRENT_BINARY_DIR}/libxml2/include")
@@ -42,10 +42,9 @@ add_library(libxmlfixes
 	wanted_tags.gen.c
 	src/libxmlfixes.c
 	src/selectors.c)
-add_dependencies(libxmlfixes mylibxml)
-target_include_directories(libxmlfixes PUBLIC
-	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include" "${CMAKE_CURRENT_BINARY_DIR}")
-target_link_libraries(libxmlfixes mylibxml.la)
+add_dependencies(libxmlfixes libxml)
+	
+target_link_libraries(libxmlfixes libxml.la)
 
 add_custom_command(
 	OUTPUT wanted_tags.gen.c
