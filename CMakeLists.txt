@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(libxmlfixes VERSION 0.1)
 
-add_library(libxml
+add_library(xml
 	libxml2/include/libxml/xmlversion.h
 	libxml2/config.h
 	libxml2/xmlwriter.c)
@@ -38,19 +38,18 @@ add_custom_command(
   DEPENDS libxml2)
 
 
-target_include_directories(libxml PUBLIC
+target_include_directories(xml PUBLIC
 	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include"
 	"${CMAKE_CURRENT_BINARY_DIR}/libxml2"
 	"${CMAKE_CURRENT_BINARY_DIR}/libxml2/include")
 
-add_library(libxmlfixes
+add_library(xmlfixes
 	wanted_tags.gen.c
 	src/libxmlfixes.c
 	src/selectors.c)
-add_dependencies(libxmlfixes libxml)
 	
-target_link_libraries(libxmlfixes libxml.la)
-target_include_directories(libxmlfixes PUBLIC
+target_link_libraries(xmlfixes libxml.la)
+target_include_directories(xmlfixes PUBLIC
 	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include"
 	"${CMAKE_CURRENT_BINARY_DIR}/libxml2"
 	"${CMAKE_CURRENT_BINARY_DIR}/libxml2/include")
