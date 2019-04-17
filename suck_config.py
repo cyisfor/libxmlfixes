@@ -42,4 +42,4 @@ for name,comment in sorted(things.items()):
 	print("/*",comment,"*/",file=chin)
 	print("#cmakedefine01",name,file=chin)
 chin.close()
-print('configure_file("libxml2/config.h.in" "config.h")')
+print('configure_file("config.h.in" "config.h")')
