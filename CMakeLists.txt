@@ -20,7 +20,6 @@ target_include_directories(xmlfixes PUBLIC
 add_custom_command(
 	OUTPUT wanted_tags.gen.c wanted_tags.gen.h
 	COMMAND make-wanted . <${CMAKE_CURRENT_SOURCE_DIR}/tags.wanted
-	WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 	DEPENDS make-wanted tags.wanted)
 	
 add_executable(make-wanted
