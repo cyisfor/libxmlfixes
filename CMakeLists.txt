@@ -9,7 +9,7 @@ add_library(xmlfixes
 	src/selectors.c)
 add_dependencies(xmlfixes xml)
 
-target_link_libraries(xmlfixes PRIVATE libxml.la)
+target_link_libraries(xmlfixes PUBLIC libxml.la)
 target_include_directories(xmlfixes PUBLIC
 	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include"
 	"${CMAKE_CURRENT_BINARY_DIR}/libxml2"
