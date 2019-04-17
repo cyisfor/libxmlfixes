@@ -5,6 +5,7 @@ add_subdirectory(libxml2)
 
 add_library(xmlfixes
 	wanted_tags.gen.c
+	wanted_tags.gen.h
 	src/libxmlfixes.c
 	src/selectors.c)
 add_dependencies(xmlfixes xml)
@@ -16,9 +17,8 @@ target_include_directories(xmlfixes PUBLIC
 	"${CMAKE_CURRENT_BINARY_DIR}/libxml2/include")
 
 add_custom_command(
-	OUTPUT wanted_tags.gen.c
+	OUTPUT wanted_tags.gen.c wanted_tags.gen.h
 	COMMAND make-wanted . <${CMAKE_CURRENT_SOURCE_DIR}/tags.wanted
-	BYPRODUCTS wanted_tags.gen.h
 	WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 	DEPENDS make-wanted tags.wanted)
 	
