@@ -14,6 +14,7 @@ target_include_directories(xmlfixes PUBLIC
 	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include"
 	"${CMAKE_CURRENT_BINARY_DIR}/libxml2"
 	"${CMAKE_CURRENT_BINARY_DIR}/libxml2/include")
+
 add_custom_command(
 	OUTPUT wanted_tags.gen.c
 	COMMAND make-wanted . <${CMAKE_CURRENT_SOURCE_DIR}/tags.wanted
