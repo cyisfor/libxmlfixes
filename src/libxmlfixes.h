@@ -15,3 +15,5 @@ xmlChar* findPropCsux(xmlNode* o, xmlChar* name, size_t len);
 // find the next actual element, if the current is a text node or something.
 // use like next = nextE(cur->next);
 xmlNode* nextE(xmlNode* e);
+// where the hell did this go?
+void html_dump_to_fd(int fd, xmlDoc* doc);

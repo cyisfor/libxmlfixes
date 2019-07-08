@@ -12,6 +12,21 @@
 
 #define LITLEN(a) a,sizeof(a)-1
 
+struct trie {
+	char c;
+	struct trie* subs;
+	size_t nsubs;
+};
+
+
+// note, CANNOT sort by tag size, since same prefix = different sizes
+// would have to use "depth" parameter in traversal, to decide between
+// little or big suffixes first...
+int compare_nodes(struct trie* a, struct trie* b) {
+	return a->c - b->c;
+}
+	
+
 int main(int argc, char *argv[])
 {
 	/*
@@ -39,12 +54,6 @@ int main(int argc, char *argv[])
 	if(argc == 2) {
 		if(chdir(argv[1])) exit(3);
 	}
-
-	struct trie {
-		char c;
-		struct trie* subs;
-		size_t nsubs;
-	};
 
 	struct trie root = {};
 
@@ -128,13 +137,6 @@ int main(int argc, char *argv[])
 	}
 	munmap(src,winfo.st_size);
 
-	// note, CANNOT sort by tag size, since same prefix = different sizes
-	// would have to use "depth" parameter in traversal, to decide between
-	// little or big suffixes first...
-	int compare_nodes(struct trie* a, struct trie* b) {
-		return a->c - b->c;
-	}
-	
 	void sort_level(struct trie* cur) {
 		if(cur->nsubs == 0) return;
 
