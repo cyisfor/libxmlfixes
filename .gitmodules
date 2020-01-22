@@ -1,3 +1,3 @@
 [submodule "libxml2"]
 	path = libxml2
-	url = https://github.com/cyisfor/libxml2.git
+	url = /home/repo/libxml2
