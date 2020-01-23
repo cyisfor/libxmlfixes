@@ -1,7 +1,16 @@
 cmake_minimum_required(VERSION 3.0)
 project(libxmlfixes VERSION 0.1)
 
-add_subdirectory(libxml2)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/add_module")
+include(AddModule)
+
+add_module(libxml2
+  GIT 84183e361fef43608ca4c4b0e388db304c92d6b9
+  SHALLOW NORECURSE
+  URLS
+  file:///home/repo/libxml2
+  git@github.com:cyisfor/libxml2.git
+  https://github.com/cyisfor/libxml2.git)
 
 add_library(xmlfixes
 	wanted_tags.gen.c
