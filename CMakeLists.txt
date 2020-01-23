@@ -6,8 +6,6 @@ include(AddModule)
 
 add_module(libxml2
   GIT 84183e361fef43608ca4c4b0e388db304c92d6b9
-  SHALLOW NORECURSE
-  URLS
   file:///home/repo/libxml2
   git@github.com:cyisfor/libxml2.git
   https://github.com/cyisfor/libxml2.git)
