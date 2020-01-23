@@ -19,11 +19,12 @@ add_dependencies(xmlfixes xml)
 
 target_link_libraries(xmlfixes PUBLIC xml)
 target_include_directories(xmlfixes PUBLIC
-	"${CMAKE_CURRENT_SOURCE_DIR}/src"
-	"${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include"
-	"${CMAKE_CURRENT_BINARY_DIR}"
-	"${CMAKE_CURRENT_BINARY_DIR}/libxml2"
-	"${CMAKE_CURRENT_BINARY_DIR}/libxml2/include")
+  "${MODULE_BIN_DIR}"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src"
+  "${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include"
+  "${CMAKE_CURRENT_BINARY_DIR}"
+  "${CMAKE_CURRENT_BINARY_DIR}/libxml2"
+  "${CMAKE_CURRENT_BINARY_DIR}/libxml2/include")
 
 add_custom_command(
 	OUTPUT wanted_tags.gen.c wanted_tags.gen.h
