@@ -19,6 +19,7 @@ add_dependencies(xmlfixes xml)
 
 target_link_libraries(xmlfixes PUBLIC xml)
 target_include_directories(xmlfixes PUBLIC
+  "${MODULE_DIR}"
   "${MODULE_BIN_DIR}"
   "${CMAKE_CURRENT_SOURCE_DIR}/src"
   "${CMAKE_CURRENT_SOURCE_DIR}/libxml2/include"
