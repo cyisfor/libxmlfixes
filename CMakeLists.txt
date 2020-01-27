@@ -6,7 +6,7 @@ include(AddModule)
 
 add_module(libxml2
   GIT 84183e361fef43608ca4c4b0e388db304c92d6b9
-  file:///home/repo/libxml2
+  file://$ENV{HOME}/repo/notmine/libxml2
   git@github.com:cyisfor/libxml2.git
   https://github.com/cyisfor/libxml2.git)
 
